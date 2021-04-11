@@ -1,6 +1,6 @@
 ## Footsteps
 
-An opinionated, non-configurable experiment logging package.
+A non-configurable experiment logging package.
 
 Footsteps is designed so that it takes minimal effort to keep track of what code generated what result, even if you are writing a five line throwaway script. Then, 3 years later when you are trying to understand how you generated that figure or trained that network, you have enough information to follow your footsteps and work out exactly what you did.
 
