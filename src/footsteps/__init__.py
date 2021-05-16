@@ -1,1 +1,1 @@
-from footsteps import output_dir
+from footsteps_ import output_dir
