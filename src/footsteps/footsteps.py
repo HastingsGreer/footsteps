@@ -5,7 +5,8 @@ import subprocess
 print("Input name of run:")
 run_name = input()
 output_dir = "results/" + run_name + "/"
-os.mkdir(output_dir)
+
+os.makedirs(output_dir)
 
 with open(output_dir + "info.txt", "w") as f:
     f.write("Command:\n")
