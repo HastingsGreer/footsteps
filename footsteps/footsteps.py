@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-print("name of run")
+print("Input name of run:")
 run_name = input()
 output_dir = "results/" + run_name + "/"
 os.mkdir(output_dir)
