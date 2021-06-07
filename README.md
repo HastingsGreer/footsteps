@@ -1,3 +1,5 @@
+'pip install footsteps'
+
 ## Footsteps
 
 A non-configurable experiment logging package.
