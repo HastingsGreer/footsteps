@@ -1,4 +1,4 @@
-'pip install footsteps'
+    pip install footsteps
 
 ## Footsteps
 
