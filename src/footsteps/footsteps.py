@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-print("Input name of run:")
+print("Input name of experiment:")
 run_name = input()
 output_dir = "results/" + run_name + "/"
 
