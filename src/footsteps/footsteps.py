@@ -6,6 +6,11 @@ print("Input name of experiment:")
 run_name = input()
 output_dir = "results/" + run_name + "/"
 
+suffix = 0
+while os.path.exists(output_dir):
+    suffix += 1
+    output_dir = "results/" + run_name + "(" + str(suffix) + ")/"
+
 os.makedirs(output_dir)
 
 with open(output_dir + "info.txt", "w") as f:
