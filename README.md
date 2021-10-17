@@ -1,4 +1,7 @@
     pip install footsteps
+    
+[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions)
+
 
 ## Footsteps
 
