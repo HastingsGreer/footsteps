@@ -19,4 +19,5 @@ jobs:
         pip install .
     - name: test
       run: |
+        ls
         python -m unittest discover
