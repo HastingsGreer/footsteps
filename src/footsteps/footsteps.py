@@ -3,7 +3,7 @@ import os
 import subprocess
 
 try:
-    subprocess.check_output(["git", "status"])
+    subprocess.check_output(["git", "status"], stderr=subprocess.PIPE)
 except subprocess.CalledProcessError:
     raise Exception("code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
     
