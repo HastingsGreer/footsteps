@@ -19,4 +19,12 @@ class FootstepsTestCase(unittest.TestCase):
         
         self.assertTrue(os.path.exists("results/preexisting_results_name(2)/info.txt"))
         
+    def testNeedsGitDir(self):
+        os.chdir("..")
+        try:
+            import footsteps
+            raise Exception("Should have failed")
+        except Exception as e:
+            self.assertTrue(str(e) == "code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
+        
         
