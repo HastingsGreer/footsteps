@@ -9,10 +9,12 @@ plt.plot(my_results)
 plt.savefig(footsteps.output_dir + "MyCoolResults.png")
 ```
     
-[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions)
+[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [pypi link](https://pypi.org/project/footsteps/)
 
 
 ## Footsteps
+
+
 
 A non-configurable experiment logging package.
 
