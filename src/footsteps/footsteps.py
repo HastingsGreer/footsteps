@@ -1,6 +1,7 @@
 import sys
 import os
 import subprocess
+import shutil
 
 try:
     subprocess.check_output(["git", "status"], stderr=subprocess.PIPE)
@@ -24,7 +25,7 @@ with open(output_dir + "info.txt", "w") as f:
     f.write("System:\n")
     f.write(subprocess.check_output(["hostname"]).decode())
     f.write("Python:\n")
-    f.write(subprocess.check_output(["which", "python"]).decode())
+    f.write(shutil.which("python"))
     f.write("Git Hash:\n")
     f.write(
         subprocess.check_output(["git", "describe", "--always"]).strip().decode() + "\n"
