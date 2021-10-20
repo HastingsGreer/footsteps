@@ -25,7 +25,7 @@ with open(output_dir + "info.txt", "w") as f:
     f.write("System:\n")
     f.write(subprocess.check_output(["hostname"]).decode())
     f.write("Python:\n")
-    f.write(shutil.which("python"))
+    f.write(shutil.which("python") + "\n")
     f.write("Git Hash:\n")
     f.write(
         subprocess.check_output(["git", "describe", "--always"]).strip().decode() + "\n"
