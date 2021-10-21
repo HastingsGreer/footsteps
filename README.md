@@ -9,8 +9,7 @@ plt.plot(my_results)
 plt.savefig(footsteps.output_dir + "MyCoolResults.png")
 ```
     
-[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [<img src="https://img.shields.io/pypi/v/footsteps.svg?color=blue">](https://pypi.org/project/footsteps/)](https://pypi.org/projects/icon_registration)
-
+[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [<img src="https://img.shields.io/pypi/v/footsteps.svg?color=blue">](https://pypi.org/project/footsteps/)
 ## Footsteps
 
 
