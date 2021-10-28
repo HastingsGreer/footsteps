@@ -22,7 +22,12 @@ def get_tab_completed_input(valid_completions):
 print("Input name of experiment:")
 valid_completions = os.listdir("results/")
 # Often the user will want to enter similar names to the ones that are already in the results directory.
-run_name = get_tab_completed_input(valid_completions)
+# Other times, the user will have put the name in an environment variable. This is useful for tests.
+# We want to make sure that the user can enter either of these.
+if "FOOTSTEPS_NAME" in os.environ:
+    run_name = os.environ["FOOTSTEPS_NAME"]
+else:
+    run_name = get_tab_completed_input(valid_completions)
 output_dir = "results/" + run_name + "/"
 
 suffix = 0
