@@ -2,14 +2,27 @@ import sys
 import os
 import subprocess
 import shutil
+import readline
 
 try:
     subprocess.check_output(["git", "status"], stderr=subprocess.PIPE)
 except subprocess.CalledProcessError:
     raise Exception("code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
-    
+
+# create directory "results/" if it doesn't exist
+if not os.path.exists("results"):
+    os.makedirs("results")
+
+def get_tab_completed_input(valid_completions):
+    readline.set_completer_delims(' \t\n;')
+    readline.parse_and_bind("tab: complete")
+    readline.set_completer(lambda text, state: [i for i in valid_completions if i.startswith(text)][state])
+    return input()
+
 print("Input name of experiment:")
-run_name = input()
+valid_completions = os.listdir("results/")
+# Often the user will want to enter similar names to the ones that are already in the results directory.
+run_name = get_tab_completed_input(valid_completions)
 output_dir = "results/" + run_name + "/"
 
 suffix = 0
