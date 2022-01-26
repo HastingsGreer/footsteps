@@ -24,11 +24,19 @@ class FootstepsTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists("results/preexisting_results_name(2)/info.txt"))
         
     def testNeedsGitDir(self):
-        os.chdir("..")
+        curr_dir = os.getcwd()
         try:
-            import footsteps
-            raise Exception("Should have failed")
-        except Exception as e:
-            self.assertTrue(str(e) == "code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
+            os.chdir("..")
+            try:
+                import footsteps
+                raise Exception("Should have failed")
+            except Exception as e:
+                self.assertTrue(str(e) == "code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
         
-        
+        finally:
+            os.chdir(curr_dir)
+
+    def testSetNameUsingEnv(self):
+        os.environ["FOOTSTEPS_NAME"] = "my_results_name"
+        output = subprocess.Popen(["python", "test/example_program.py", "horseradish"], stdin=PIPE, stdout=PIPE).communicate(b"")
+        self.assertTrue(os.path.exists("results/my_results_name/info.txt"))

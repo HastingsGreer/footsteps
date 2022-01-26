@@ -8,8 +8,11 @@ try:
 except subprocess.CalledProcessError:
     raise Exception("code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
     
-print("Input name of experiment:")
-run_name = input()
+if "FOOTSTEPS_NAME" in os.environ:
+    run_name = os.environ["FOOTSTEPS_NAME"]
+else:
+    print("Input name of experiment:")
+    run_name = input()
 output_dir = "results/" + run_name + "/"
 
 suffix = 0
