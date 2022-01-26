@@ -18,7 +18,7 @@ output_dir = "results/" + run_name + "/"
 suffix = 0
 while os.path.exists(output_dir):
     suffix += 1
-    output_dir = "results/" + run_name + "(" + str(suffix) + ")/"
+    output_dir = "results/" + run_name + "-" + str(suffix) + "/"
 
 os.makedirs(output_dir)
 
