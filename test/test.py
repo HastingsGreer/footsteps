@@ -21,7 +21,7 @@ class FootstepsTestCase(unittest.TestCase):
         output = subprocess.Popen(["python", "test/example_program.py", "horseradish"], stdin=PIPE, stdout=PIPE).communicate(b"preexisting_results_name")
         output = subprocess.Popen(["python", "test/example_program.py", "horseradish"], stdin=PIPE, stdout=PIPE).communicate(b"preexisting_results_name")
         
-        self.assertTrue(os.path.exists("results/preexisting_results_name(2)/info.txt"))
+        self.assertTrue(os.path.exists("results/preexisting_results_name-2/info.txt"))
         
     def testNeedsGitDir(self):
         curr_dir = os.getcwd()
