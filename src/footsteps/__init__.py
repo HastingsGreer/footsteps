@@ -55,7 +55,7 @@ def initialize(output_root="results/", run_name=None):
             ).decode()
         )
         f.write("Current working dir:\n")
-        f.write(os.cwd() + "\n")
+        f.write(os.getcwd() + "\n")
 def __getattr__(name):
     if name == "output_dir":
         if not initialized:
