@@ -15,6 +15,12 @@ class FootstepsTestCase(unittest.TestCase):
         with open("results/my_results_name/info.txt", "r") as f:
             print("Current info format:\n=========================")
             print(f.read())
+    
+    def testCustomRoot(self):
+        output = subprocess.Popen(["python", "test/example_custom_root.py", "horseradish"], stdin=PIPE, stdout=PIPE).communicate(b"my_results_name")
+        
+        self.assertTrue(os.path.exists("../results/my_results_name/info.txt"))
+        self.assertTrue(os.path.exists("../results/my_results_name/card.txt"))
         
     def testFootstepsFallbackPath(self):
         output = subprocess.Popen(["python", "test/example_program.py", "horseradish"], stdin=PIPE, stdout=PIPE).communicate(b"preexisting_results_name")
