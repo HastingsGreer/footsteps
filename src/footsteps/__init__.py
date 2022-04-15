@@ -11,7 +11,7 @@ except subprocess.CalledProcessError:
 initialized = False
 output_dir_impl = None
 
-def initialize(output_root="results/", run_name=None):
+def initialize(run_name=None, output_root="results/"):
     
     global output_dir_impl
     global initialized
