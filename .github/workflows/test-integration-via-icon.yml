@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches: master
+
+jobs:
+  test-integration:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: Install footsteps 
+      run: |
+        pip install .
+    - name: Clone and install icon_regsitration
+      working-directory: ../
+      run: |
+        git clone https://github.com/uncbiag/ICON
+        pip install -e ICON
+    - name: test
+      working-directory: ../ICON
+      run: |
+        python -m unittest -k CPU
+        python -m unittest -k knee_itk
