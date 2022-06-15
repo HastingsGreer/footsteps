@@ -6,7 +6,7 @@ on:
     branches: master
 
 jobs:
-  test-linux:
+  test-integration:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
