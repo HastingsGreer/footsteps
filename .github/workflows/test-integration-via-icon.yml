@@ -21,12 +21,12 @@ jobs:
       run: |
         pip install .
     - name: Clone and install icon_regsitration
-      working_directory: ../
+      working-directory: ../
       run: |
         git clone https://github.com/uncbiag/ICON
         pip install -e ICON
     - name: test
-      working_directory: ../ICON
+      working-directory: ../ICON
       run: |
         python -m unittest -k CPU
         python -m unittest -k knee_itk
