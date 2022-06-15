@@ -36,6 +36,8 @@ class FootstepsTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists("../results/my_results_name/card.txt"))
 
     def testFootstepsFallbackPath(self):
+        shutil.rmtree("results/preexisting_results_name", ignore_errors=True)
+        shutil.rmtree("results/preexisting_results_name-1", ignore_errors=True)
         shutil.rmtree("results/preexisting_results_name-2", ignore_errors=True)
         output = subprocess.Popen(
             ["python", "test/example_program.py", "horseradish"],

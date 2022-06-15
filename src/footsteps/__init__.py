@@ -60,7 +60,7 @@ def initialize(run_name=None, output_root="results/"):
         )
         f.write("Current working dir:\n")
         f.write(os.getcwd() + "\n")
-        shutil.copy(sys.argv[0], output_dir_impl + os.path.basename(sys.argv[0])))
+        shutil.copy(sys.argv[0], output_dir_impl + os.path.basename(sys.argv[0]))
 
 
 def __getattr__(name):
