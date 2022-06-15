@@ -1,4 +1,5 @@
 import unittest
+import filecmp
 import shutil
 import subprocess
 import time
@@ -72,17 +73,20 @@ class FootstepsTestCase(unittest.TestCase):
             os.chdir(curr_dir)
 
     def testSetNameUsingEnv(self):
-        shutil.rmtree("results/my_results_name/", ignore_errors=True)
-        os.environ["FOOTSTEPS_NAME"] = "my_results_name"
-        output = subprocess.Popen(
-            ["python", "test/example_program.py", "horseradish"],
-            stdin=PIPE,
-            stdout=PIPE,
-        ).communicate(b"")
-        self.assertTrue(os.path.exists("results/my_results_name/info.txt"))
-        del os.environ["FOOTSTEPS_NAME"]
+        try:
+            shutil.rmtree("results/my_results_name_env/", ignore_errors=True)
+            os.environ["FOOTSTEPS_NAME"] = "my_results_name_env"
+            output = subprocess.Popen(
+                ["python", "test/example_program.py", "horseradish"],
+                stdin=PIPE,
+                stdout=PIPE,
+            ).communicate(b"")
+            self.assertTrue(os.path.exists("results/my_results_name_env/info.txt"))
+        finally:
+            del os.environ["FOOTSTEPS_NAME"]
 
     def testUncommittedFile(self):
+        shutil.rmtree("results/uncommitted_file/", ignore_errors=True)
 
         try:
             shutil.copy("test/example_program.py", "test/example_uncommitted.py")
@@ -92,8 +96,13 @@ class FootstepsTestCase(unittest.TestCase):
                 stdin=PIPE,
                 stdout=PIPE,
             ).communicate(b"uncommitted_file")
+            self.assertTrue(
+                filecmp.cmp(
+                    "test/example_uncommitted.py",
+                    "results/uncommitted_file/example_uncommitted.py",
+                )
+            )
 
         finally:
-            pass
 
-    #     os.remove("test/example_uncommitted.py")
+            os.remove("test/example_uncommitted.py")

@@ -6,19 +6,22 @@ import shutil
 try:
     subprocess.check_output(["git", "status"], stderr=subprocess.PIPE)
 except subprocess.CalledProcessError:
-    raise Exception("code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment")
+    raise Exception(
+        "code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment"
+    )
 
 initialized = False
 output_dir_impl = None
 
+
 def initialize(run_name=None, output_root="results/"):
-    
+
     global output_dir_impl
     global initialized
-    
+
     if initialized:
         raise Exception("footsteps can only be initialized once")
-    
+
     initialized = True
     if not run_name:
         if "FOOTSTEPS_NAME" in os.environ:
@@ -34,7 +37,7 @@ def initialize(run_name=None, output_root="results/"):
         output_dir_impl = os.path.join(output_root, run_name) + "-" + str(suffix) + "/"
 
     os.makedirs(output_dir_impl)
-    
+
     print("Saving results to " + output_dir_impl)
 
     with open(output_dir_impl + "info.txt", "w") as f:
@@ -46,7 +49,8 @@ def initialize(run_name=None, output_root="results/"):
         f.write(shutil.which("python") + "\n")
         f.write("Git Hash:\n")
         f.write(
-            subprocess.check_output(["git", "describe", "--always"]).strip().decode() + "\n"
+            subprocess.check_output(["git", "describe", "--always"]).strip().decode()
+            + "\n"
         )
         f.write("Uncommitted changes:\n")
         f.write(
@@ -56,6 +60,9 @@ def initialize(run_name=None, output_root="results/"):
         )
         f.write("Current working dir:\n")
         f.write(os.getcwd() + "\n")
+        shutil.copy(sys.argv[0], output_dir_impl + sys.argv[0].split(os.path.sep)[-1])
+
+
 def __getattr__(name):
     if name == "output_dir":
         if not initialized:
