@@ -56,7 +56,8 @@ def initialize(run_name=None, output_root="results/"):
         try: 
             f.write(
                 subprocess.check_output(
-                    ["git", "diff", "HEAD", "--", ".", ":(exclude)*.ipynb"]
+                    ["git", "diff", "HEAD", "--", ".", ":(exclude)*.ipynb"],
+                    stderr=subprocess.DEVNULL
                 ).decode()
             )
         except subprocess.CalledProcessError as err:
