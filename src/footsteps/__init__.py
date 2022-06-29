@@ -53,11 +53,18 @@ def initialize(run_name=None, output_root="results/"):
             + "\n"
         )
         f.write("Uncommitted changes:\n")
-        f.write(
-            subprocess.check_output(
-                ["git", "diff", "HEAD", "--", ".", ":(exclude)*.ipynb"]
-            ).decode()
-        )
+        try: 
+            f.write(
+                subprocess.check_output(
+                    ["git", "diff", "HEAD", "--", ".", ":(exclude)*.ipynb"]
+                ).decode()
+            )
+        except subprocess.CalledProcessError as err:
+            f.write(
+                subprocess.check_output(
+                    ["git", "diff", "HEAD", "--", "."]
+                ).decode()
+            )
         f.write("Current working dir:\n")
         f.write(os.getcwd() + "\n")
         try:
