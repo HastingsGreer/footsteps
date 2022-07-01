@@ -56,11 +56,12 @@ def initialize(run_name=None, output_root="results/"):
         try: 
             f.write(
                 subprocess.check_output(
-                    ["git", "diff", "HEAD", "--", ".", ":(exclude)*.ipynb"],
+                    ["git", "diff", "HEAD", "--", ":^/*.ipynb"],
                     stderr=subprocess.DEVNULL
                 ).decode()
             )
         except subprocess.CalledProcessError as err:
+            print("using fallback because your version of git is ancient")
             f.write(
                 subprocess.check_output(
                     ["git", "diff", "HEAD", "--", "."]
