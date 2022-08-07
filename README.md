@@ -1,10 +1,10 @@
 ```bash
-(base) hastings@Hastingss-Air sample_project % cat sample_project.py
+$ cat sample_project.py
 import footsteps
 
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
     f.write("6, 9, 42")
-(base) hastings@Hastingss-Air sample_project % python sample_project.py
+$ python sample_project.py
 Input name of experiment:
 manually_entered_experiment_name
 Saving results to results/manually_entered_experiment_name/
@@ -20,7 +20,7 @@ Git Hash:
 Uncommitted changes:
 Current working dir:
 /Users/hastings/sample_project
-(base) hastings@Hastingss-Air sample_project % sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
+$ sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
 import footsteps
 footsteps.initialize("fixed_experiment_name")
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
@@ -49,15 +49,8 @@ index 9dea213..4ec6cca 100644
      f.write("6, 9, 42")
 Current working dir:
 /Users/hastings/sample_project
-(base) hastings@Hastingss-Air sample_project % python sample_project.py
-Saving results to results/fixed_experiment_name-1/```
-
-```python
-import footsteps
-import matplotlib.pyplot as plt
-plt.plot(my_results)
-plt.savefig(footsteps.output_dir + "MyCoolResults.png")
 ```
+
     
 [<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [<img src="https://img.shields.io/pypi/v/footsteps.svg?color=blue">](https://pypi.org/project/footsteps/)
 ## Footsteps
