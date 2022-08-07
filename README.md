@@ -1,3 +1,12 @@
+[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [<img src="https://img.shields.io/pypi/v/footsteps.svg?color=blue">](https://pypi.org/project/footsteps/)
+## Footsteps
+
+A non-configurable experiment logging package.
+
+Footsteps is designed so that it takes minimal effort to keep track of what code generated what result, even if you are writing a five line throwaway script. Then, 3 years later when you are trying to understand how you generated that figure or trained that network, you have enough information to follow your footsteps and work out exactly what you did.
+
+By default, when your code asks footsteps for an output directory, the user is prompted for an experiment name. Much like git commit messages, this seems like it would be annoying, but I've found it to be worthwhile.
+
 ```bash
 [hastings@$Hastingss-Air ~/sample_project]$ cat sample_project.py
 import footsteps
@@ -56,14 +65,7 @@ Current working dir:
 ```
 
     
-[<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [<img src="https://img.shields.io/pypi/v/footsteps.svg?color=blue">](https://pypi.org/project/footsteps/)
-## Footsteps
 
-
-
-A non-configurable experiment logging package.
-
-Footsteps is designed so that it takes minimal effort to keep track of what code generated what result, even if you are writing a five line throwaway script. Then, 3 years later when you are trying to understand how you generated that figure or trained that network, you have enough information to follow your footsteps and work out exactly what you did.
 
 ### Philosophy
 
