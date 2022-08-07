@@ -1,5 +1,5 @@
 ```bash
-# cat sample_project.py
+$ cat sample_project.py
 import footsteps
 
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
