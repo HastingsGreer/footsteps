@@ -18,6 +18,7 @@ with open(footsteps.output_dir + "network_weights.csv", "w") as f:
 Input name of experiment:
 manually_entered_experiment_name
 Saving results to results/manually_entered_experiment_name/
+
 [hastings@$Hastingss-Air ~/sample_project]$ cat results/manually_entered_experiment_name/info.txt
 Command:
 sample_project.py
