@@ -1,14 +1,14 @@
 ```bash
-$ cat sample_project.py
+[hastings@$Hastingss-Air ~/sample_project]$ cat sample_project.py
 import footsteps
 
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
     f.write("6, 9, 42")
-$ python sample_project.py
+[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py
 Input name of experiment:
 manually_entered_experiment_name
 Saving results to results/manually_entered_experiment_name/
-(base) hastings@Hastingss-Air sample_project % cat results/manually_entered_experiment_name/info.txt
+[hastings@$Hastingss-Air ~/sample_project]$ cat results/manually_entered_experiment_name/info.txt
 Command:
 sample_project.py
 System:
@@ -20,14 +20,18 @@ Git Hash:
 Uncommitted changes:
 Current working dir:
 /Users/hastings/sample_project
-$ sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
+```
+footsteps can also be told to log to programatically determined experiment name with `initialize`. This is useful for unit tests and such.
+If you make a change to a file without committing it, the git diff is also logged.
+```
+[hastings@$Hastingss-Air ~/sample_project]$ sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
 import footsteps
 footsteps.initialize("fixed_experiment_name")
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
     f.write("6, 9, 42")
-(base) hastings@Hastingss-Air sample_project % python sample_project.py
+[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py
 Saving results to results/fixed_experiment_name/
-(base) hastings@Hastingss-Air sample_project % cat results/fixed_experiment_name/info.txt
+[hastings@$Hastingss-Air ~/sample_project]$ cat results/fixed_experiment_name/info.txt
 Command:
 sample_project.py
 System:
