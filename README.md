@@ -31,14 +31,16 @@ Current working dir:
 /Users/hastings/sample_project
 ```
 footsteps can also be told to log to a programatically determined experiment name with `initialize`. This is useful for unit tests and such.
-Note that in this example we make a change to a file without committing it, so the git diff is logged.
+Note that in this example:
+    We make a change to a file without committing it, so the git diff is logged.
+    We pass a crucial command line argument, which is logged
 ```
 [hastings@$Hastingss-Air ~/sample_project]$ sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
 import footsteps
 footsteps.initialize("fixed_experiment_name")
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
     f.write("6, 9, 42")
-[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py
+[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py --finnicky-command-line-argument
 Saving results to results/fixed_experiment_name/
 [hastings@$Hastingss-Air ~/sample_project]$ cat results/fixed_experiment_name/info.txt
 Command:
