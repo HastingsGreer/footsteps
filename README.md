@@ -1,6 +1,56 @@
 ```bash
-pip install footsteps
-```
+(base) hastings@Hastingss-Air sample_project % cat sample_project.py
+import footsteps
+
+with open(footsteps.output_dir + "network_weights.csv", "w") as f:
+    f.write("6, 9, 42")
+(base) hastings@Hastingss-Air sample_project % python sample_project.py
+Input name of experiment:
+manually_entered_experiment_name
+Saving results to results/manually_entered_experiment_name/
+(base) hastings@Hastingss-Air sample_project % cat results/manually_entered_experiment_name/info.txt
+Command:
+sample_project.py
+System:
+Hastingss-Air
+Python:
+/Users/hastings/opt/anaconda3/bin/python
+Git Hash:
+288b9ca
+Uncommitted changes:
+Current working dir:
+/Users/hastings/sample_project
+(base) hastings@Hastingss-Air sample_project % sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
+import footsteps
+footsteps.initialize("fixed_experiment_name")
+with open(footsteps.output_dir + "network_weights.csv", "w") as f:
+    f.write("6, 9, 42")
+(base) hastings@Hastingss-Air sample_project % python sample_project.py
+Saving results to results/fixed_experiment_name/
+(base) hastings@Hastingss-Air sample_project % cat results/fixed_experiment_name/info.txt
+Command:
+sample_project.py
+System:
+Hastingss-Air
+Python:
+/Users/hastings/opt/anaconda3/bin/python
+Git Hash:
+288b9ca
+Uncommitted changes:
+diff --git a/sample_project.py b/sample_project.py
+index 9dea213..4ec6cca 100644
+--- a/sample_project.py
++++ b/sample_project.py
+@@ -1,4 +1,4 @@
+ import footsteps
+-
++footsteps.initialize("fixed_experiment_name")
+ with open(footsteps.output_dir + "network_weights.csv", "w") as f:
+     f.write("6, 9, 42")
+Current working dir:
+/Users/hastings/sample_project
+(base) hastings@Hastingss-Air sample_project % python sample_project.py
+Saving results to results/fixed_experiment_name-1/```
 
 ```python
 import footsteps
