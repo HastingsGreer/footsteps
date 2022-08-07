@@ -13,6 +13,7 @@ import footsteps
 
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
     f.write("6, 9, 42")
+
 [hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py
 Input name of experiment:
 manually_entered_experiment_name
@@ -40,8 +41,10 @@ import footsteps
 footsteps.initialize("fixed_experiment_name")
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
     f.write("6, 9, 42")
+
 [hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py --finnicky-command-line-argument
 Saving results to results/fixed_experiment_name/
+
 [hastings@$Hastingss-Air ~/sample_project]$ cat results/fixed_experiment_name/info.txt
 Command:
 sample_project.py
