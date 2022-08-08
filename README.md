@@ -45,7 +45,7 @@ Saving results to results/fixed_experiment_name/
 
 [hastings@$Hastingss-Air ~/sample_project]$ cat results/fixed_experiment_name/info.txt
 Command:
-sample_project.py
+sample_project.py --finnicky-command-line-argument
 System:
 Hastingss-Air
 Python:
