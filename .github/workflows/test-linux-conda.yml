@@ -38,5 +38,5 @@ jobs:
             conda install pip
             pip install -e .
             python -m unittest
-            grep -Fxq "Flask" results/my_results_name/package_versions.txt
+            grep -Fq "Flask" results/my_results_name/package_versions.txt
             
