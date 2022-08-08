@@ -24,17 +24,17 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           miniconda-version: "latest"
-          channels: bioconda, conda-forge, defaults
+          channels: defaults
           use-only-tar-bz2: true  # IMPORTANT: This needs to be set for caching to work properly!
           auto-update-conda: true
           auto-activate-base: true
-      - name: Install samtools
+      - name: Install flask check if footsteps sees it
         run: |
             echo "begin: PATH=$PATH;"
 
-            conda create -y --name samtools samtools
+            conda create -y --name myenv flask
 
-            conda activate samtools 
+            conda activate myenv
             conda install pip
             pip install -e .
             python -m unittest
