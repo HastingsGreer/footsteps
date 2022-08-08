@@ -25,4 +25,5 @@ jobs:
     - name: test
       run: |
         ls
+        env/Scripts/activate
         python -m unittest discover
