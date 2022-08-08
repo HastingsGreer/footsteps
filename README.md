@@ -1,7 +1,7 @@
 [<img src="https://github.com/HastingsGreer/footsteps/actions/workflows/test.yml/badge.svg">](https://github.com/HastingsGreer/footsteps/actions) [<img src="https://img.shields.io/pypi/v/footsteps.svg?color=blue">](https://pypi.org/project/footsteps/)
 ## Footsteps
 
-A non-configurable experiment logging package.
+We're all heathens: left to our own devices, `torch.save(state_dict, "best-weights-no-aug-tuesday-deeper.trch")` is inevitable.
 
 Footsteps provides an output directory pre-filled with `info.txt` describing your code and the circumstances in which it is running, so that it takes minimal effort to keep track of what code generated what result, even if you are writing a five line throwaway script. Then, 3 years later when you are trying to understand how you generated that figure or trained that network, you have enough information to follow your footsteps and work out exactly what you did.
 
