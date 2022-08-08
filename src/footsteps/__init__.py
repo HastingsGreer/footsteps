@@ -6,21 +6,23 @@ import shutil
 initialized = False
 output_dir_impl = None
 
+
 def is_notebook() -> bool:
     # https://stackoverflow.com/questions/15411967/how-can-i-check-if-code-is-executed-in-the-ipython-notebook
     try:
         shell = get_ipython().__class__.__name__
-        if shell == 'ZMQInteractiveShell':
-            return True   # Jupyter notebook or qtconsole
-        elif shell == 'TerminalInteractiveShell':
+        if shell == "ZMQInteractiveShell":
+            return True  # Jupyter notebook or qtconsole
+        elif shell == "TerminalInteractiveShell":
             return False  # Terminal running IPython
         else:
             return False  # Other type (?)
     except NameError:
-        return False      # Probably standard Python interpreter
-    
+        return False  # Probably standard Python interpreter
+
+
 def initialize(run_name=None, output_root="results/"):
-    
+
     try:
         subprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
     except subprocess.CalledProcessError:
@@ -40,22 +42,27 @@ def initialize(run_name=None, output_root="results/"):
             run_name = os.environ["FOOTSTEPS_NAME"]
         else:
             print("Input name of experiment:")
-            if is_notebook():          
+            if is_notebook():
                 run_name = input()
             else:
                 try:
                     import readline
+
                     def get_tab_completed_input(valid_completions):
-                        readline.set_completer_delims(' \t\n;')
+                        readline.set_completer_delims(" \t\n;")
                         readline.parse_and_bind("tab: complete")
-                        readline.set_completer(lambda text, state: [i for i in valid_completions if i.startswith(text)][state])
+                        readline.set_completer(
+                            lambda text, state: [
+                                i for i in valid_completions if i.startswith(text)
+                            ][state]
+                        )
                         return input()
+
                     valid_completions = os.listdir(output_root)
                     run_name = get_tab_completed_input(valid_completions)
                 except:
                     run_name = input()
-                    
-                    
+
     output_dir_impl = os.path.join(output_root, run_name) + "/"
 
     suffix = 0
@@ -75,24 +82,29 @@ def initialize(run_name=None, output_root="results/"):
         f.write("Python:\n")
         f.write(shutil.which("python") + "\n")
         f.write("Git Hash:\n")
-        f.write(
+        git_hash = (
             subprocess.check_output(["git", "describe", "--always"]).strip().decode()
-            + "\n"
         )
+        f.write(git_hash + "\n")
+        origin = (
+            subprocess.check_output(["git", "remote", "get-url", "origin"])
+            .strip()
+            .decode()
+        )
+        if "github" in origin:
+            f.write(origin + "/tree/" + git_hash + "\n")
         f.write("Uncommitted changes:\n")
-        try: 
+        try:
             f.write(
                 subprocess.check_output(
                     ["git", "diff", "HEAD", "--", ":^/*.ipynb"],
-                    stderr=subprocess.DEVNULL
+                    stderr=subprocess.DEVNULL,
                 ).decode()
             )
         except subprocess.CalledProcessError as err:
             print("using fallback because your version of git is ancient")
             f.write(
-                subprocess.check_output(
-                    ["git", "diff", "HEAD", "--", "."]
-                ).decode()
+                subprocess.check_output(["git", "diff", "HEAD", "--", "."]).decode()
             )
         f.write("Current working dir:\n")
         f.write(os.getcwd() + "\n")
@@ -103,9 +115,7 @@ def initialize(run_name=None, output_root="results/"):
     try:
         with open(f"{output_dir_impl}package_versions.txt", "w") as f:
             subprocess.Popen(
-                ["python", "-m", "pip", "list"],
-                stdout=f,
-                stderr=subprocess.DEVNULL
+                ["python", "-m", "pip", "list"], stdout=f, stderr=subprocess.DEVNULL
             )
     except:
         print("Pip list failed")
