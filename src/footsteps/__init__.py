@@ -75,7 +75,8 @@ def initialize(run_name=None, output_root="results/"):
             pass
     try: 
         subprocess.Popen(
-            ["python", "-m", "pip", "list", ">", f"{output_dir_impl}package_versions.txt"],
+            ["python", "-m", "pip", "list"],
+            stdout=open(f"{output_dir_impl}package_versions.txt", "w"),
             stderr=subprocess.DEVNULL
         )
     except:
