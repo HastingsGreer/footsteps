@@ -35,6 +35,7 @@ jobs:
             conda create -y --name samtools samtools
 
             conda activate samtools 
+            conda install pip
             pip install -e .
             python -m unittest
             
