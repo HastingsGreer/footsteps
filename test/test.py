@@ -74,7 +74,7 @@ class FootstepsTestCase(unittest.TestCase):
             except Exception as e:
                 self.assertTrue(
                     str(e)
-                    == "code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment"
+                    == "code that uses footsteps needs to be run in a git directory with at least one commit to record the git hash assosciated with this experiment"
                 )
 
         finally:
