@@ -3,13 +3,6 @@ import os
 import subprocess
 import shutil
 
-try:
-    subprocess.check_output(["git", "status"], stderr=subprocess.PIPE)
-except subprocess.CalledProcessError:
-    raise Exception(
-        "code that uses footsteps needs to be run in a git directory to record the git hash assosciated with this experiment"
-    )
-
 initialized = False
 output_dir_impl = None
 
@@ -27,6 +20,13 @@ def is_notebook() -> bool:
         return False      # Probably standard Python interpreter
     
 def initialize(run_name=None, output_root="results/"):
+    
+    try:
+        subprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError:
+        raise Exception(
+            "code that uses footsteps needs to be run in a git directory with at least one commit to record the git hash assosciated with this experiment"
+        )
 
     global output_dir_impl
     global initialized
