@@ -32,7 +32,7 @@ Uncommitted changes:
 Current working dir:
 /Users/hastings/sample_project
 ```
-footsteps can also be told to log to a programatically determined experiment name with `initialize`. This is useful for unit tests and such.
+Footsteps can also be told to log to a programatically determined experiment name with `initialize`. This is useful for unit tests and such.
 ```
 [hastings@$Hastingss-Air ~/sample_project]$ sed 's/^$/footsteps.initialize("fixed_experiment_name")/' sample_project.py | tee sample_project.py
 import footsteps
