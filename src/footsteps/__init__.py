@@ -73,17 +73,14 @@ def initialize(run_name=None, output_root="results/"):
             shutil.copy(sys.argv[0], output_dir_impl + os.path.basename(sys.argv[0]))
         except:
             pass
-    with open(output_dir_impl + "package_versions.txt", "w") as f:
-        try: 
-            f.write("Package versions:\n\n")
-            f.write(
-                subprocess.check_output(
-                    ["python", "-m", "pip", "list"],
-                    stderr=subprocess.DEVNULL
-                ).decode()
+    try: 
+            subprocess.Popen(
+                ["python", "-m", "pip", "list", ">", f"{output_dir_impl}package_versions.txt"],
+                stderr=subprocess.DEVNULL
             )
-        except:
-            print("Pip list failed")
+        )
+    except:
+        print("Pip list failed")
 
 
 def __getattr__(name):
