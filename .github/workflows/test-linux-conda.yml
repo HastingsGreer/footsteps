@@ -1,4 +1,4 @@
-name: Conda
+name: test-linux-conda
 
 on:
   pull_request:
@@ -38,4 +38,5 @@ jobs:
             conda install pip
             pip install -e .
             python -m unittest
+            grep -Fxq "Flask" results/my_results_name/package_versions.txt
             
