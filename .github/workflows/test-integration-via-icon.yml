@@ -33,3 +33,4 @@ jobs:
     - name: show results
       run: |
         cat ../ICON/results/test/info.txt
+        cat ../ICON/results/test/package_versions.txt
