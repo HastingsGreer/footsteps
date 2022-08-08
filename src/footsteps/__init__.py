@@ -73,16 +73,17 @@ def initialize(run_name=None, output_root="results/"):
             shutil.copy(sys.argv[0], output_dir_impl + os.path.basename(sys.argv[0]))
         except:
             pass
+    with open(output_dir_impl + "package_version.txt", "w") as f:
         try: 
             f.write("Package versions:\n\n")
             f.write(
                 subprocess.check_output(
-                    ["python", "-m", "pip", "freeze"],
+                    ["python", "-m", "pip", "list"],
                     stderr=subprocess.DEVNULL
                 ).decode()
             )
         except:
-            print("Pip freeze failed")
+            print("Pip list failed")
 
 
 def __getattr__(name):
