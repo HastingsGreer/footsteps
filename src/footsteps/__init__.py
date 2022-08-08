@@ -74,10 +74,9 @@ def initialize(run_name=None, output_root="results/"):
         except:
             pass
     try: 
-            subprocess.Popen(
-                ["python", "-m", "pip", "list", ">", f"{output_dir_impl}package_versions.txt"],
-                stderr=subprocess.DEVNULL
-            )
+        subprocess.Popen(
+            ["python", "-m", "pip", "list", ">", f"{output_dir_impl}package_versions.txt"],
+            stderr=subprocess.DEVNULL
         )
     except:
         print("Pip list failed")
