@@ -20,8 +20,10 @@ def is_notebook() -> bool:
     except NameError:
         return False  # Probably standard Python interpreter
 
+pip_list_process=None
 
 def initialize(run_name=None, output_root="results/"):
+    global pip_list_process
 
     try:
         subprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
@@ -114,7 +116,7 @@ def initialize(run_name=None, output_root="results/"):
             pass
     try:
         with open(f"{output_dir_impl}package_versions.txt", "w") as f:
-            subprocess.Popen(
+            pip_list_process = subprocess.Popen(
                 ["python", "-m", "pip", "list"], stdout=f, stderr=subprocess.DEVNULL
             )
     except:
