@@ -22,11 +22,11 @@ def is_notebook() -> bool:
 def initialize(run_name=None, output_root="results/"):
     
     try:
-         ssubprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
-     except subprocess.CalledProcessError:
-         raise Exception(
-             "code that uses footsteps needs to be run in a git directory with at least one commit to record the git hash assosciated with this experiment"
-         )
+        subprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError:
+        raise Exception(
+            "code that uses footsteps needs to be run in a git directory with at least one commit to record the git hash assosciated with this experiment"
+        )
 
     global output_dir_impl
     global initialized
