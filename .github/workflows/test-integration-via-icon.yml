@@ -1,4 +1,4 @@
-name: tests
+name: test-integration-via-icon
 
 on:
   pull_request:
@@ -30,3 +30,6 @@ jobs:
       run: |
         python -m unittest -k CPU
         python -m unittest -k knee_itk
+    - name: show results
+      run: |
+        cat ../ICON/results/test/info.txt

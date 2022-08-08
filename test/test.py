@@ -23,6 +23,12 @@ class FootstepsTestCase(unittest.TestCase):
         with open("results/my_results_name/info.txt", "r") as f:
             print("Current info format:\n=========================")
             print(f.read())
+        time.sleep(5)
+        with open("results/my_results_name/package_versions.txt", "r") as f:
+            print("\n=========================\nCurrent packages format:\n=========================")
+            package_file = f.read()
+            print(package_file)
+            self.assertTrue("footsteps" in package_file)
 
     def testCustomRoot(self):
         shutil.rmtree("../results/my_results_name/", ignore_errors=True)
