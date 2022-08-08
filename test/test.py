@@ -69,6 +69,7 @@ class FootstepsTestCase(unittest.TestCase):
             os.chdir("..")
             try:
                 import footsteps
+                footsteps.initialize()
 
                 raise Exception("Should have failed")
             except Exception as e:
