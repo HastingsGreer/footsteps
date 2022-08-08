@@ -66,6 +66,11 @@ index 9dea213..4ec6cca 100644
 Current working dir:
 /Users/hastings/sample_project
 ```
+If you re-use an experiment name, the old one will never be overwritten: instead, a numeral is added to disambiguate:
+```
+[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py --finnicky-command-line-argument
+Saving results to results/fixed_experiment_name-1/
+```
 
     
 
