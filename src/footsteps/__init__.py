@@ -82,7 +82,7 @@ def initialize(run_name=None, output_root="results/"):
         f.write("System:\n")
         f.write(subprocess.check_output(["hostname"]).decode())
         f.write("Python:\n")
-        f.write(shutil.which("python") + "\n")
+        f.write(sys.executable + "\n")
         f.write("Git Hash:\n")
         git_hash = (
             subprocess.check_output(["git", "describe", "--always"]).strip().decode()
@@ -117,7 +117,7 @@ def initialize(run_name=None, output_root="results/"):
     try:
         with open(f"{output_dir_impl}package_versions.txt", "w") as f:
             pip_list_process = subprocess.Popen(
-                ["python", "-m", "pip", "list"], stdout=f, stderr=subprocess.DEVNULL
+                [sys.executable, "-m", "pip", "list"], stdout=f, stderr=subprocess.DEVNULL
             )
     except:
         print("Pip list failed")

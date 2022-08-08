@@ -3,6 +3,7 @@ import filecmp
 import shutil
 import subprocess
 import time
+import sys
 
 from subprocess import PIPE, Popen
 
@@ -13,7 +14,7 @@ class FootstepsTestCase(unittest.TestCase):
     def testFootsteps(self):
         shutil.rmtree("results/my_results_name/", ignore_errors=True)
         output = subprocess.Popen(
-            ["python", "test/example_program.py", "horseradish"],
+            [sys.executable, "test/example_program.py", "horseradish"],
             stdin=PIPE,
             stdout=PIPE,
         ).communicate(b"my_results_name")
@@ -33,7 +34,7 @@ class FootstepsTestCase(unittest.TestCase):
     def testCustomRoot(self):
         shutil.rmtree("../results/my_results_name/", ignore_errors=True)
         output = subprocess.Popen(
-            ["python", "test/example_custom_root.py", "horseradish"],
+            [sys.executable, "test/example_custom_root.py", "horseradish"],
             stdin=PIPE,
             stdout=PIPE,
         ).communicate(b"my_results_name")
@@ -46,17 +47,17 @@ class FootstepsTestCase(unittest.TestCase):
         shutil.rmtree("results/preexisting_results_name-1", ignore_errors=True)
         shutil.rmtree("results/preexisting_results_name-2", ignore_errors=True)
         output = subprocess.Popen(
-            ["python", "test/example_program.py", "horseradish"],
+            [sys.executable, "test/example_program.py", "horseradish"],
             stdin=PIPE,
             stdout=PIPE,
         ).communicate(b"preexisting_results_name")
         output = subprocess.Popen(
-            ["python", "test/example_program.py", "horseradish"],
+            [sys.executable, "test/example_program.py", "horseradish"],
             stdin=PIPE,
             stdout=PIPE,
         ).communicate(b"preexisting_results_name")
         output = subprocess.Popen(
-            ["python", "test/example_program.py", "horseradish"],
+            [sys.executable, "test/example_program.py", "horseradish"],
             stdin=PIPE,
             stdout=PIPE,
         ).communicate(b"preexisting_results_name")
@@ -86,7 +87,7 @@ class FootstepsTestCase(unittest.TestCase):
             shutil.rmtree("results/my_results_name_env/", ignore_errors=True)
             os.environ["FOOTSTEPS_NAME"] = "my_results_name_env"
             output = subprocess.Popen(
-                ["python", "test/example_program.py", "horseradish"],
+                [sys.executable, "test/example_program.py", "horseradish"],
                 stdin=PIPE,
                 stdout=PIPE,
             ).communicate(b"")
@@ -101,7 +102,7 @@ class FootstepsTestCase(unittest.TestCase):
             shutil.copy("test/example_program.py", "test/example_uncommitted.py")
 
             output = subprocess.Popen(
-                ["python", "test/example_uncommitted.py"],
+                [sys.executable, "test/example_uncommitted.py"],
                 stdin=PIPE,
                 stdout=PIPE,
             ).communicate(b"uncommitted_file")
