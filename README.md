@@ -68,7 +68,7 @@ Current working dir:
 ```
 If you re-use an experiment name, the old one will never be overwritten: instead, a numeral is added to disambiguate:
 ```
-[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py --finnicky-command-line-argument
+[hastings@$Hastingss-Air ~/sample_project]$ python sample_project.py
 Saving results to results/fixed_experiment_name-1/
 ```
 
