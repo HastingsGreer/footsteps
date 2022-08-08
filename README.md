@@ -8,7 +8,7 @@ Footsteps provides an output directory pre-filled with `info.txt` describing you
 By default, when your code asks footsteps for an output directory, the user is prompted for an experiment name. Much like git commit messages, this seems like it would be annoying, but I've found it to be worthwhile.
 
 ```bash
-[hastings@$Hastingss-Air ~/sample_project]$ cat sample_project.py
+\hastings@$Hastingss-Air ~/sample_project\$ cat sample_project.py
 import footsteps
 
 with open(footsteps.output_dir + "network_weights.csv", "w") as f:
