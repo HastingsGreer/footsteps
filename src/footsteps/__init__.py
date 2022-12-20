@@ -88,13 +88,16 @@ def initialize(run_name=None, output_root="results/"):
             subprocess.check_output(["git", "describe", "--always"]).strip().decode()
         )
         f.write(git_hash + "\n")
-        origin = (
-            subprocess.check_output(["git", "remote", "get-url", "origin"])
-            .strip()
-            .decode()
-        )
-        if "github" in origin:
-            f.write(origin + "/tree/" + git_hash + "\n")
+        try:
+            origin = (
+                subprocess.check_output(["git", "remote", "get-url", "origin"])
+                .strip()
+                .decode()
+            )
+            if "github" in origin:
+                f.write(origin + "/tree/" + git_hash + "\n")
+        except:
+            pass
         f.write("Uncommitted changes:\n")
         try:
             f.write(
