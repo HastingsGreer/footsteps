@@ -29,6 +29,8 @@ def initialize(run_name=None, output_root="results/"):
     try:
         subprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
     except subprocess.CalledProcessError:
+        import warnings
+        warnings.warn("footsteps is not in a git directory- as such, diff from last commit won't be recorded")
         has_git = False
 
     global output_dir_impl

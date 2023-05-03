@@ -68,17 +68,8 @@ class FootstepsTestCase(unittest.TestCase):
         curr_dir = os.getcwd()
         try:
             os.chdir("..")
-            try:
-                import footsteps
-                footsteps.initialize()
-
-                raise Exception("Should have failed")
-            except Exception as e:
-                self.assertTrue(
-                    str(e)
-                    == "code that uses footsteps needs to be run in a git directory with at least one commit to record the git hash assosciated with this experiment"
-                )
-
+            import footsteps
+            footsteps.initialize()
         finally:
             os.chdir(curr_dir)
 
