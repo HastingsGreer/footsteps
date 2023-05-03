@@ -64,14 +64,6 @@ class FootstepsTestCase(unittest.TestCase):
 
         self.assertTrue(os.path.exists("results/preexisting_results_name-2/info.txt"))
 
-    def testNeedsGitDir(self):
-        curr_dir = os.getcwd()
-        try:
-            os.chdir("..")
-            import footsteps
-            footsteps.initialize()
-        finally:
-            os.chdir(curr_dir)
 
     def testSetNameUsingEnv(self):
         try:
@@ -85,6 +77,14 @@ class FootstepsTestCase(unittest.TestCase):
             self.assertTrue(os.path.exists("results/my_results_name_env/info.txt"))
         finally:
             del os.environ["FOOTSTEPS_NAME"]
+    def testNeedsGitDir(self):
+        curr_dir = os.getcwd()
+        try:
+            os.chdir("..")
+            import footsteps
+            footsteps.initialize()
+        finally:
+            os.chdir(curr_dir)
 
     def testUncommittedFile(self):
         shutil.rmtree("results/uncommitted_file/", ignore_errors=True)
