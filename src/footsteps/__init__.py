@@ -25,12 +25,11 @@ pip_list_process=None
 def initialize(run_name=None, output_root="results/"):
     global pip_list_process
 
+    has_git = True
     try:
         subprocess.check_output(["git", "describe", "--always"], stderr=subprocess.PIPE)
     except subprocess.CalledProcessError:
-        raise Exception(
-            "code that uses footsteps needs to be run in a git directory with at least one commit to record the git hash assosciated with this experiment"
-        )
+        has_git = False
 
     global output_dir_impl
     global initialized
@@ -83,11 +82,12 @@ def initialize(run_name=None, output_root="results/"):
         f.write(subprocess.check_output(["hostname"]).decode())
         f.write("Python:\n")
         f.write(sys.executable + "\n")
-        f.write("Git Hash:\n")
-        git_hash = (
-            subprocess.check_output(["git", "describe", "--always"]).strip().decode()
-        )
-        f.write(git_hash + "\n")
+        if has_git:
+            f.write("Git Hash:\n")
+            git_hash = (
+                subprocess.check_output(["git", "describe", "--always"]).strip().decode()
+            )
+            f.write(git_hash + "\n")
         try:
             origin = (
                 subprocess.check_output(["git", "remote", "get-url", "origin"])
@@ -98,19 +98,20 @@ def initialize(run_name=None, output_root="results/"):
                 f.write(origin + "/tree/" + git_hash + "\n")
         except:
             pass
-        f.write("Uncommitted changes:\n")
-        try:
-            f.write(
-                subprocess.check_output(
-                    ["git", "diff", "HEAD", "--", ":^/*.ipynb"],
-                    stderr=subprocess.DEVNULL,
-                ).decode()
-            )
-        except subprocess.CalledProcessError as err:
-            print("using fallback because your version of git is ancient")
-            f.write(
-                subprocess.check_output(["git", "diff", "HEAD", "--", "."]).decode()
-            )
+        if has_git:
+            f.write("Uncommitted changes:\n")
+            try:
+                f.write(
+                    subprocess.check_output(
+                        ["git", "diff", "HEAD", "--", ":^/*.ipynb"],
+                        stderr=subprocess.DEVNULL,
+                    ).decode()
+                )
+            except subprocess.CalledProcessError as err:
+                print("using fallback because your version of git is ancient")
+                f.write(
+                    subprocess.check_output(["git", "diff", "HEAD", "--", "."]).decode()
+                )
         f.write("Current working dir:\n")
         f.write(os.getcwd() + "\n")
         try:
