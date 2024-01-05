@@ -135,3 +135,11 @@ def __getattr__(name):
             initialize()
         return output_dir_impl
     raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
+
+num_plots = 0
+def plot(name=""):
+    global num_plots
+    import matplotlib.pyplot as plt
+    plt.savefig(__getattr__("output_dir") + f"{num_plots:03d}_{name}.png")
+    plt.clf()
+    num_plots += 1
