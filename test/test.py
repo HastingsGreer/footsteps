@@ -82,7 +82,7 @@ class FootstepsTestCase(unittest.TestCase):
         try:
             os.chdir("..")
             import footsteps
-            footsteps.initialize()
+            footsteps.initialize("git_dir_test")
         finally:
             os.chdir(curr_dir)
 
